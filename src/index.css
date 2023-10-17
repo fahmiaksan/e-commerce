@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.show-sidebar{
+@apply animate-wiggle 
+}
+.hide-sidebar{
+@apply -right-[1000px] ease-in-out
+}
