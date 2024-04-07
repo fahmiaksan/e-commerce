@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import ProductList from '../../components/ProductList/ProductList';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsByCategory } from '../../store/CategorySlice';
@@ -9,7 +9,7 @@ export const CategoryPage = () => {
     const { catProductSingle: products, catProductSingleStatus: status } = useSelector(state => state.category);
     useEffect(() => {
         dispatch(fetchProductsByCategory(id, "single"));
-    }, [id]);
+    }, [dispatch, id]);
     return (
         <div>
             <div>

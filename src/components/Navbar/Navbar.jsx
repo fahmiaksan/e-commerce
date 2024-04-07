@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../store/CategorySlice';
@@ -8,11 +8,11 @@ function Navbar() {
     const dispatch = useDispatch();
     const { data: categories } = useSelector((state) => state.category);
     const { totalItems } = useSelector(state => state.cart);
+    const filterCategories = categories.filter((category) => category.name !== 'Clothes');
     useEffect(() => {
         dispatch(fetchCategories());
         dispatch(getCartTotal());
-    }, []);
-
+    }, [dispatch]);
     return (
         <nav className='w-full relative overflow-hidden'>
             <div className=''>
@@ -22,13 +22,6 @@ function Navbar() {
                             <span className='text-blue-700'>Shopping</span>
                             <span className='text-yellow-400'>Hub.</span>
                         </Link>
-
-                        <form className='md:flex hp:hidden space-x-3 '>
-                            <input type="text" placeholder='search..' className='focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-2 ring-1 ring-slate-200 shadow-sm duration-200' />
-                            <button className='px-[10px] py-1 bg-yellow-400'>
-                                <i className='fa fa-search'></i>
-                            </button>
-                        </form>
 
                         <div className='-translate-x-6 '>
                             <Link to="cart" className='flex relative '>
@@ -51,15 +44,13 @@ function Navbar() {
                             </div>
                             <div className='space-y-3'>
                                 {categories.map((category) => {
-                                    return (
+                                    if (category.name === 'Clothes') return (
                                         <li className=' flex flex-col' key={category.id}>
                                             <Link to={`/category/${category.id}`} className=' text-slate-600' onClick={() => setIsOpen(false)}>{category.name}</Link>
-                                        </li>)
+                                        </li>
+                                    )
                                 })}
                             </div>
-                            {/* <li className='space-y-2 flex flex-col'>
-                                <Link className=' text-black' onClick={() => setIsOpen(false)}>demos</Link>
-                            </li> */}
 
                         </ul>
                         <div className='-show-btn w-full text-yellow-400 flex justify-end items-center px-4 py-2'>
@@ -70,7 +61,7 @@ function Navbar() {
                     </div>
                     <li className='md:flex hp:hidden justify-end text-white space-x-7 text-md py-2'>
                         {
-                            categories.map((category) => {
+                            filterCategories.map((category) => {
                                 return (
                                     <div key={category.id}>
                                         <Link to={`/category/${category.id}`} className='flex'>{category.name}</Link>
@@ -78,7 +69,6 @@ function Navbar() {
                                 )
                             })
                         }
-                        {/* <Link className='flex'>demos</Link> */}
                     </li>
                 </div>
             </div>

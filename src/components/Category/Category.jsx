@@ -1,12 +1,12 @@
-import React from 'react';
 import { STATUS } from '../../utils/status';
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Category({ categories, status }) {
     if (STATUS.LOADING === status) return (<Loader />);
-    if (STATUS.ERROR === status) return (<Error />)
+    if (STATUS.ERROR === status) return (<Error />);
     return (
         <section>
             <div>
@@ -33,11 +33,11 @@ function Category({ categories, status }) {
                 </div>
             </div>
         </section>
-    )
-
-
-
+    );
 }
 
-
+Category.propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.object),
+    status: PropTypes.string,
+};
 export default Category

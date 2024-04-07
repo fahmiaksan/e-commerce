@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { formatPrice } from '../../utils/helpers';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsModalVisible } from '../../store/ModalSlice';
@@ -42,13 +42,13 @@ const SingleProduct = () => {
             <div className='w-3/5 lg:flex sm:block p-8 bg-white fixed space-x-4'>
 
                 {/* details left */}
-                <div className=''>
+                <div className='w-full'>
                     <div className='flex items-end'>
                         <img src={product.images[0]} alt={product.title} className='h-72 w-96' />
                     </div>
                 </div>
                 {/* details right */}
-                <div>
+                <div className='w-11/12'>
                     <div className='flex justify-between flex-col space-y-5'>
                         <h3 className='text-blue-950 font-semibold text-2xl tracking-wide'>{product.title}</h3>
                         <p className='text-slate-500'>{product.description}</p>

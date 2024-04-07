@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Slider from '../../components/Slider/Slider';
 import Category from '../../components/Category/Category';
 import { fetchProductsByCategory, fetchCategories } from '../../store/CategorySlice';
@@ -16,19 +16,12 @@ export const HomePage = () => {
         dispatch(fetchCategories());
         dispatch(fetchProductsByCategory(1, 'all'));
         dispatch(fetchProductsByCategory(2, 'all'));
-    }, []);
-    // console.log(productsByCategory);
+    }, [dispatch]);
     return (
         <div className='min-h-[60vh]'>
             <Slider />
             <Category categories={categories} status={categoryStatus} />
             <ProductList products={products} status={productStatus} />
-            {/* category one product */}
-            <section id='category 1'>
-                {
-                    productsByCategory[0] && <SingleCategory products={productsByCategory[0]} status={catProductAllStatus} />
-                }
-            </section>
 
             {/* category two product */}
             <section id='category 2'>

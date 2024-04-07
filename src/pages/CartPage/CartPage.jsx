@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../../utils/helpers';
@@ -6,9 +6,10 @@ import { clearCart, getCartTotal, removeFromCart, toggleCartQty } from '../../st
 export const CartPage = () => {
     const dispatch = useDispatch();
     const { data: cartProducts, totalItems, totalAmount, deliveryCharge } = useSelector((state) => state.cart);
+    const cartSelector = useSelector(state => state.cart);
     useEffect(() => {
         dispatch(getCartTotal());
-    }, [useSelector(state => state.cart)]);
+    }, [cartSelector, dispatch]);
     const emptyCartMsg = <h4 className='text-red-500 text-2xl'>No Item Found</h4>
     return (
         <div>
