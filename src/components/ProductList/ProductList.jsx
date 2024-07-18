@@ -38,7 +38,7 @@ function ProductList({ products, status }) {
                                 return (
                                     <div className='shadow-xl px-4 pt-4 pb-10 space-y-3' key={data.id} onClick={() => viewModalHandler(data)}>
                                         <div className='flex relative'>
-                                            <img src={data.images[1].replace(/"/g, '').replace(/]/g, '')} alt={data.category.name} />
+                                            <img src={data.images[0].replace(/"/g, '').replace(/]/g, '')} alt={data.category.name} />
                                             <div className='-translate-x-full h-7 px-2 font-semibold mt-2 flex items-center rounded-xl bg-yellow-500 w-32 text-sm tracking-wider text-white shadow-slate-700 shadow-2xl'>
                                                 {data.category.name}</div>
                                         </div>
