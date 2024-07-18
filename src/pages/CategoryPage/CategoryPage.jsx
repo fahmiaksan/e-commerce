@@ -3,7 +3,7 @@ import ProductList from '../../components/ProductList/ProductList';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProductsByCategory } from '../../store/CategorySlice';
 import { Link, useParams } from 'react-router-dom';
-export const CategoryPage = () => {
+export default function CategoryPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const { catProductSingle: products, catProductSingleStatus: status } = useSelector(state => state.category);
